@@ -15,10 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 // connect DB when a request happens
-app.use(async (req, res, next) => {
-  await connectDB();
-  next();
-});
+connectDB();
 
 // routes
 app.get("/", (req, res) => res.send("server is Live!"));

@@ -6,7 +6,7 @@ const transactionSchema = new mongoose.Schema({
     amount: {type: Number, required: true},
     credits: {type: Number, required: true},
     isPaid: {type: Boolean, default: false},
-}, {timestamp: true})
+}, {timestamps: true})
 
 const Transaction = mongoose.model('Transaction', transactionSchema);
 

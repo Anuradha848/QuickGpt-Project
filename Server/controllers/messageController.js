@@ -66,7 +66,7 @@ export const imageMessageController = async (req, res) => {
 
     //Construct Imagekit AI Generation URL
     const generatedImageUrl =
-    `${process.env.IMAGEKIT_URL_ENDPOINT}/ik-genimg-prompt-${encodedPrompt}/quickgpt/${Date.now()}.png?tr=w-800,h-800`
+    `${process.env.IMAGEKIT_URL_ENDPOINT}/ik-genimg-prompt/${encodedPrompt}/quickgpt/${Date.now()}.png?tr=w-800,h-800`
 
     //Trigger generation by fetching from Imagekit
     const aiImageResponse = await axios.get(generatedImageUrl, {responseType: "arraybuffer"})
