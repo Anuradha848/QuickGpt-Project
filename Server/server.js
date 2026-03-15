@@ -27,4 +27,13 @@ app.use("/api/chat", chatRouter);
 app.use("/api/message", messageRouter);
 app.use("/api/credit", creditRouter);
 
+// Run server locally (not on Vercel)
+const PORT = process.env.PORT || 3000;
+
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`Server is Running on port ${PORT}`);
+  });
+}
+
 export default app;
