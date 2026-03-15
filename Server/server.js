@@ -10,12 +10,15 @@ import { stripeWebhooks } from "./controllers/webhooks.js";
 
 const app = express();
 
+// connect DB
+connectDB();
+
+// Stripe webhook (must be before express.json)
+app.post("/api/stripe", express.raw({ type: "application/json" }), stripeWebhooks);
+
 // middleware
 app.use(cors());
 app.use(express.json());
-
-// connect DB when a request happens
-connectDB();
 
 // routes
 app.get("/", (req, res) => res.send("server is Live!"));
@@ -23,7 +26,5 @@ app.use("/api/user", userRouter);
 app.use("/api/chat", chatRouter);
 app.use("/api/message", messageRouter);
 app.use("/api/credit", creditRouter);
-
-app.post("/api/stripe", express.raw({ type: "application/json" }), stripeWebhooks);
 
 export default app;
