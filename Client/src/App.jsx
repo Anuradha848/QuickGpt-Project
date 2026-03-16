@@ -7,7 +7,7 @@ import Loading from './Pages/Loading'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { assets } from './assets/assets'
 import './assets/prism.css'
-import { useAppContext } from './Context/AppContext'
+import { useAppContext } from './Context/AppContext.jsx'
 import Login from './Pages/Login'
 import {Toaster} from 'react-hot-toast'
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from 'react'
-import { useAppContext } from "../Context/AppContext";
+import { useAppContext } from "../Context/AppContext.jsx";
 import toast from "react-hot-toast";
 
 
