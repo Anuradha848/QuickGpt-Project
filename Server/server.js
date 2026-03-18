@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import connectDB from "./configs/db.js";
@@ -13,19 +14,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// DB connect (safe for Vercel)
-let isConnected = false;
-const connect = async () => {
-  if (!isConnected) {
-    await connectDB();
-    isConnected = true;
-  }
-};
-
-app.use(async (req, res, next) => {
-  await connect();
-  next();
-});
+// 🔥 CONNECT DB IMMEDIATELY
+connectDB();
 
 // routes
 app.get("/", (req, res) => res.send("server is Live!"));
@@ -34,5 +24,12 @@ app.use("/api/user", userRouter);
 app.use("/api/chat", chatRouter);
 app.use("/api/message", messageRouter);
 app.use("/api/credit", creditRouter);
+
+// 🔥 LOCAL SERVER
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("Server is Running on port " + PORT);
+});
 
 export default app;
